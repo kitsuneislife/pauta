@@ -4,21 +4,19 @@
 	"private": true,
 	"type": "module",
 	"imports": {
-		"#lib": "./src/lib/index.js",
 		"#lib/*": "./src/lib/*"
 	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
+		"start": "node --env-file=.env build",
+		"prepare": "svelte-kit sync || echo \"\"",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"db:start": "docker compose up",
-		"db:push": "drizzle-kit push",
+		"db:start": "docker compose up -d",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:seed": "docker compose exec -T db psql -U pauta -d pauta -v ON_ERROR_STOP=1 < db/seed.sql"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^6.0.2",
@@ -32,5 +30,9 @@
 		"svelte-check": "^4.7.8",
 		"typescript": "^6.0.3",
 		"vite": "^8.3.8"
+	},
+	"packageManager": "pnpm@12.18.0",
+	"engines": {
+		"node": ">=24"
 	}
 }

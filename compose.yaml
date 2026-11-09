@@ -1,14 +1,14 @@
 services:
   db:
-    image: postgres
-    restart: always
+    image: postgres:16-alpine
+    restart: unless-stopped
     ports:
       - 5432:5432
-    environment: 
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: local
+    environment:
+      POSTGRES_USER: pauta
+      POSTGRES_PASSWORD: pauta
+      POSTGRES_DB: pauta
     volumes:
-      - pgdata:/var/lib/postgresql
+      - pgdata:/var/lib/postgresql/data
 volumes:
   pgdata:
