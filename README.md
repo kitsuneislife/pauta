@@ -5,6 +5,11 @@ APIs. É a versão SvelteKit do sistema de notícias que a turma fez em Spring
 Boot: mesmo domínio (pessoa, endereço, cidade, UF, país) mais a notícia, e uma
 API REST com os mesmos caminhos do `GenericController` do Java.
 
+Faculdade Senac Cascavel, Padrões de Projetos, Frameworks e APIs.
+
+Integrantes: Camilo Fernando Bomfim, Joaquim Augusto Nardino, Luana
+Mackieviez e Lucas Pereira.
+
 Stack: SvelteKit 3 com Svelte 5, TypeScript, adapter-node, PostgreSQL 16 via
 Docker Compose, Drizzle ORM e pnpm.
 

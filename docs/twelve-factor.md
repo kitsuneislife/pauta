@@ -5,6 +5,10 @@
 > dependências travadas pelo pnpm, configuração só por variáveis de ambiente e
 > serviços de apoio trocáveis pela URL.
 
+Faculdade Senac Cascavel, Padrões de Projetos, Frameworks e APIs.
+Integrantes: Camilo Fernando Bomfim, Joaquim Augusto Nardino, Luana Mackieviez
+e Lucas Pereira.
+
 ## Arquitetura
 
 ```mermaid
