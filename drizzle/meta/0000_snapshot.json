@@ -1,0 +1,400 @@
+{
+  "id": "b1e6f1ce-4709-4637-a482-5394eb314752",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.cidade": {
+      "name": "cidade",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "codigo_ibge": {
+          "name": "codigo_ibge",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "uf_id": {
+          "name": "uf_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cidade_uf_id_uf_id_fk": {
+          "name": "cidade_uf_id_uf_id_fk",
+          "tableFrom": "cidade",
+          "tableTo": "uf",
+          "columnsFrom": [
+            "uf_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "cidade_codigoIbge_unique": {
+          "name": "cidade_codigoIbge_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "codigo_ibge"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.endereco": {
+      "name": "endereco",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cep": {
+          "name": "cep",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logradouro": {
+          "name": "logradouro",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "numero": {
+          "name": "numero",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bairro": {
+          "name": "bairro",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cidade_id": {
+          "name": "cidade_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pessoa_id": {
+          "name": "pessoa_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "endereco_cidade_id_cidade_id_fk": {
+          "name": "endereco_cidade_id_cidade_id_fk",
+          "tableFrom": "endereco",
+          "tableTo": "cidade",
+          "columnsFrom": [
+            "cidade_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "endereco_pessoa_id_pessoa_id_fk": {
+          "name": "endereco_pessoa_id_pessoa_id_fk",
+          "tableFrom": "endereco",
+          "tableTo": "pessoa",
+          "columnsFrom": [
+            "pessoa_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.noticia": {
+      "name": "noticia",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "conteudo": {
+          "name": "conteudo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "publicada_em": {
+          "name": "publicada_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "autor_id": {
+          "name": "autor_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cidade_id": {
+          "name": "cidade_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "noticia_autor_id_pessoa_id_fk": {
+          "name": "noticia_autor_id_pessoa_id_fk",
+          "tableFrom": "noticia",
+          "tableTo": "pessoa",
+          "columnsFrom": [
+            "autor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "noticia_cidade_id_cidade_id_fk": {
+          "name": "noticia_cidade_id_cidade_id_fk",
+          "tableFrom": "noticia",
+          "tableTo": "cidade",
+          "columnsFrom": [
+            "cidade_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pais": {
+      "name": "pais",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "codigo_iso": {
+          "name": "codigo_iso",
+          "type": "varchar(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "pais_nome_unique": {
+          "name": "pais_nome_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nome"
+          ]
+        },
+        "pais_codigoIso_unique": {
+          "name": "pais_codigoIso_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "codigo_iso"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pessoa": {
+      "name": "pessoa",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cpf": {
+          "name": "cpf",
+          "type": "varchar(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_nascimento": {
+          "name": "data_nascimento",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(150)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ativo": {
+          "name": "ativo",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "pessoa_cpf_unique": {
+          "name": "pessoa_cpf_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "cpf"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.uf": {
+      "name": "uf",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sigla": {
+          "name": "sigla",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pais_id": {
+          "name": "pais_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "uf_pais_id_pais_id_fk": {
+          "name": "uf_pais_id_pais_id_fk",
+          "tableFrom": "uf",
+          "tableTo": "pais",
+          "columnsFrom": [
+            "pais_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "uf_sigla_unique": {
+          "name": "uf_sigla_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "sigla"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
