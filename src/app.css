@@ -1,0 +1,127 @@
+:root {
+	color-scheme: light dark;
+	--fundo: #fbfaf7;
+	--texto: #1d1c1a;
+	--suave: #6b6760;
+	--linha: #e3dfd6;
+	--destaque: #b3261e;
+	font-family: Georgia, 'Times New Roman', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fundo: #171614;
+		--texto: #ece9e2;
+		--suave: #a29d93;
+		--linha: #34322e;
+		--destaque: #f2867d;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--fundo);
+	color: var(--texto);
+	line-height: 1.6;
+}
+
+header,
+main {
+	max-width: 46rem;
+	margin: 0 auto;
+	padding: 1rem;
+}
+
+header {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: baseline;
+	justify-content: space-between;
+	border-bottom: 3px double var(--linha);
+}
+
+nav {
+	display: flex;
+	gap: 1rem;
+}
+
+a {
+	color: inherit;
+}
+
+.marca {
+	font-size: 2rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.meta {
+	color: var(--suave);
+	font-size: 0.9rem;
+}
+
+.erro {
+	color: var(--destaque);
+	font-weight: bold;
+}
+
+article + article {
+	border-top: 1px solid var(--linha);
+}
+
+form {
+	display: grid;
+	gap: 0.75rem;
+}
+
+label {
+	display: grid;
+	gap: 0.25rem;
+}
+
+input,
+select,
+textarea,
+button {
+	font: inherit;
+	padding: 0.5rem;
+	border: 1px solid var(--linha);
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+	justify-self: start;
+}
+
+.perigo {
+	color: var(--destaque);
+}
+
+:focus-visible {
+	outline: 2px solid var(--destaque);
+	outline-offset: 2px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	text-align: left;
+	padding: 0.4rem;
+	border-bottom: 1px solid var(--linha);
+}
+
+.tabela {
+	overflow-x: auto;
+}
