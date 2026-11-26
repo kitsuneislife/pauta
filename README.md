@@ -26,6 +26,12 @@ pnpm db:seed
 pnpm dev
 ```
 
+O banco do Docker fica na porta 5433 do host, para não brigar com um
+PostgreSQL instalado na máquina (que costuma ocupar a 5432). Se o
+`pnpm db:migrate` falhar só com `ELIFECYCLE`, o drizzle-kit não conseguiu
+conectar: confira se o Docker está rodando, se o `.env` aponta para a porta
+5433 e se `docker compose ps` mostra o `db` como `healthy`.
+
 Abre em http://localhost:5173. Para produção: `pnpm build` e `pnpm start`
 (porta e origem vêm de `PORT` e `ORIGIN` no `.env`).
 

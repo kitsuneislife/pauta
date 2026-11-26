@@ -13,7 +13,7 @@
 		"start": "node --env-file=.env build",
 		"prepare": "svelte-kit sync || echo \"\"",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"db:start": "docker compose up -d",
+		"db:start": "docker compose up -d --wait",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:seed": "docker compose exec -T db psql -U pauta -d pauta -v ON_ERROR_STOP=1 < db/seed.sql"
